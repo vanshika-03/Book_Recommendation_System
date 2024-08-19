@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendations</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='/book_recommend.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Libre+Baskerville:wght@700&family=Ojuju:wght@200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="nav">
+      <h1>Books Recommendation Sytem</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="#">About</a>
+        <a href="/">Top 50</a>
+        <a href="/recommend">Recommendations</a>
+      </nav>
+    </div>
+
+    <form action="/recommend_books" method="post">
+      <input
+        id="search"
+        name="user_input"
+        type="text"
+        placeholder="Search for your favorite books!"
+        class="form-control"
+      />
+      <input type="submit" id="submit" />
+    </form>
+
+    <h2>Recommendations</h2>
+
+    {% if data %}
+
+    {% for i in data %}
+    <div class="books">
+        <div class="book_recommended">
+          <img
+            src="{{i[2]}}"
+            alt="Girl in a jacket"
+            width="200"
+            height="250"
+          />
+          <h3>{{i[0]}}</h3>
+          <p>{{i[1]}}</p>
+  
+        </div>
+    {% endfor %}
+    
+    {% endif %}
+
+  </body>
+</html>
